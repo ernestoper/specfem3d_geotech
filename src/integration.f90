@@ -75,10 +75,21 @@ character(len=250),intent(out) :: errtag
 errtag="ERROR: unknown!"
 errcode=-1
 
-deallocate(dshape_quad4_xy,dshape_quad4_yz,dshape_quad4_zx)
-deallocate(gll_weights_xy,lagrange_gll_xy,dlagrange_gll_xy)
-deallocate(gll_weights_yz,lagrange_gll_yz,dlagrange_gll_yz)
-deallocate(gll_weights_zx,lagrange_gll_zx,dlagrange_gll_zx)
+if(allocated(dshape_quad4_xy))deallocate(dshape_quad4_xy)
+if(allocated(dshape_quad4_yz))deallocate(dshape_quad4_yz)
+if(allocated(dshape_quad4_zx))deallocate(dshape_quad4_zx)
+if(allocated(dshape_quad4_xy))deallocate(dshape_quad4_xy)
+if(allocated(dshape_quad4_yz))deallocate(dshape_quad4_yz)
+if(allocated(dshape_quad4_zx))deallocate(dshape_quad4_zx)
+if(allocated(gll_weights_xy))deallocate(gll_weights_xy)
+if(allocated(lagrange_gll_xy))deallocate(lagrange_gll_xy)
+if(allocated(dlagrange_gll_xy))deallocate(dlagrange_gll_xy)
+if(allocated(gll_weights_yz))deallocate(gll_weights_yz)
+if(allocated(lagrange_gll_yz))deallocate(lagrange_gll_yz)
+if(allocated(dlagrange_gll_yz))deallocate(dlagrange_gll_yz)
+if(allocated(gll_weights_zx))deallocate(gll_weights_zx)
+if(allocated(lagrange_gll_zx))deallocate(lagrange_gll_zx)
+if(allocated(dlagrange_gll_zx))deallocate(dlagrange_gll_zx)
 
 errcode=0
 return

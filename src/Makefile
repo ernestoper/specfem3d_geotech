@@ -44,6 +44,7 @@ OBJ = $(BIN)/global.o           \
       $(BIN)/apply_traction.o   \
       $(BIN)/compute_pressure.o \
       $(BIN)/plastic_library.o  \
+      $(BIN)/ebe_matvec.o       \
       $(BIN)/visual.o           \
       $(BIN)/postprocess.o
 
@@ -53,7 +54,7 @@ OBJ_EXCAV = $(BIN)/excavation_library.o
 # object tree for SEM
 OBJ_SEM = $(BIN)/serial_library.o      \
           $(BIN)/math_library_serial.o \
-          $(BIN)/solver.o
+          $(BIN)/solverc.o
 
 # object tree for SEMMPI parallel
 OBJ_SEMMPI = $(BIN)/set_precision_mpi.o \
@@ -65,7 +66,7 @@ OBJ_SEMMPI = $(BIN)/set_precision_mpi.o \
 # object tree for SEM
 OBJ_SEM = $(BIN)/serial_library.o      \
           $(BIN)/math_library_serial.o \
-          $(BIN)/solver.o
+          $(BIN)/solverc.o
 
 # object tree for PARTMESH
 OBJ_PARTMESH = $(BIN)/global.o           \
@@ -174,8 +175,14 @@ $(BIN)/visual.o: visual.f90
 $(BIN)/postprocess.o: postprocess.f90
 	$(FC_COMPILE) -c -o $(BIN)/postprocess.o postprocess.f90
 
-$(BIN)/solver.o: solver.f90
-	$(FC_COMPILE) -c -o $(BIN)/solver.o solver.f90
+#$(BIN)/solver.o: solver.f90
+#	$(FC_COMPILE) -c -o $(BIN)/solver.o solver.f90
+
+$(BIN)/ebe_matvec.o: ebe_matvec.c
+	$(CC_COMPILE) -c -o $(BIN)/ebe_matvec.o ebe_matvec.c
+
+$(BIN)/solverc.o: solverc.f90
+	$(FC_COMPILE) -c -o $(BIN)/solverc.o solverc.f90
 
 $(BIN)/solver_mpi.o: solver_mpi.f90
 	$(FC_COMPILE) -c -o $(BIN)/solver_mpi.o solver_mpi.f90
